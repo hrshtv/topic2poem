@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 from extract_topics import TopicExtractor
 
-df = pd.read_csv("dataset_150.csv")
+df = pd.read_csv("dataset_200_top_authors.csv")
 
 punctuation = [p for p in punctuation]
 punctuation += ["—", "*", "’"]
@@ -27,4 +27,4 @@ def getTopicList(text, sep = "\n"):
 tqdm.pandas()
 df["Topics"] = df["Content"].progress_apply(getTopicList)
 
-df.to_csv("poem_topics_improved_bigrams_150.csv", index = False)
+df.to_csv("poem_topics_200_top_authors.csv", index = False)

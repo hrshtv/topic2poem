@@ -3,7 +3,10 @@ from tqdm import tqdm
 from string import punctuation
 from nltk.tokenize import word_tokenize
 
-MAX_LEN = 150
+MAX_LEN = 200
+
+punctuation = [p for p in punctuation]
+punctuation += ["—", "*", "’"]
 
 def countTokens(text):
     tokens = word_tokenize(text)
@@ -32,6 +35,8 @@ max      24091.000000
 
 mask = df["Length"] <= MAX_LEN
 df = df[mask] # leaves about 1/2 of the dataset
+
+print(df)
 
 df.reset_index(drop = True, inplace = True)
 

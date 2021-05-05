@@ -1,9 +1,11 @@
 import pandas as pd
 
-data_path = "poem_topics_improved_bigrams_150.csv"
+data_path = "dataset_200.csv"
+# data_path = "poem_topics_improved_bigrams_150.csv" # 413 poems
 
 # source: https://www.deseret.com/2015/3/20/20479016/poets-famous-quotes-birthplace-writers-edgar-allen-poe-maya-angelou-emily-dickinson
 names = [
+
     "Edgar Allan Poe",
     "Maya Angelou",
     "Emily Dickinson",
@@ -14,7 +16,6 @@ names = [
     "Walt Whitman",
     "Thomas Hardy",
     "Rudyard Kipling",
-    "Oscar Wilde",
     "John Keats",
     "Elizabeth Barrett Browning",
     "William Blake",
@@ -24,17 +25,25 @@ names = [
     "Mark Twain",
     "Ralph Waldo Emerson",
     "John Donne",
-    "W.B. Yeats",
-    "Lord Byron",
+    "William Butler Yeats",
+    "Lord ron (George Gordon)",
     "Lewis Carroll",
     "Alfred, Lord Tennyson",
-    "T.S. Eliot",
+    "T. S. Eliot",
     "Ezra Pound",
     "John Milton",
     "Sappho",
-    "Homer",
-    "Li Bai",
+
+    "Isaac Watts",
+    "Carole Boston Weatherford",
+    "George Eliot",
+    "Rabindranath Tagore",
+    "Christina Rossetti",
+    "Robert Burns",
+
 ]
+
+names = list(set(names)) # just a sanity check
 
 print(len(names))
 
@@ -51,3 +60,10 @@ for name in names:
     total += n
 
 print(total)
+
+# Select only these poems
+df = df[df["Author"].isin(names)]
+print(df)
+
+df.reset_index(drop = True, inplace = True)
+df.to_csv("dataset_200_top_authors.csv", index = False)
