@@ -18,7 +18,7 @@ class TopicExtractor:
 
         self.allowed_tags = ["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "RB", "RBR", "RBS", "VBG"]
         self.nouns = ["NN", "NNS", "NNP", "NNPS"]
-        self.before_noun = ["JJ", "JJR", "JJS"]
+        self.before_noun = ["JJ", "JJR", "JJS", "NN"]
 
         self.topics = None
 
@@ -69,7 +69,8 @@ class TopicExtractor:
 
 if __name__ == '__main__':
     
-    text = """Whose woods these are I think I know.   
+    text = """
+    Whose woods these are I think I know.   
     His house is in the village though;   
     He will not see me stopping here   
     To watch his woods fill up with snow.   
@@ -87,7 +88,8 @@ if __name__ == '__main__':
     The woods are lovely, dark and deep,   
     But I have promises to keep,   
     And miles to go before I sleep,   
-    And miles to go before I sleep."""
+    And miles to go before I sleep.
+    """
 
     punctuation = [p for p in punctuation]
     punctuation += ["—", "*", "’"]

@@ -9,10 +9,10 @@ from extract_topics import TopicExtractor
 df = pd.read_csv("dataset_200_top_authors.csv")
 
 punctuation = [p for p in punctuation]
-punctuation += ["—", "*", "’"]
+punctuation += ["—", "’"]
 te = TopicExtractor("stopwords.txt", punctuation)
 
-def getTopicList(text, sep = "\n"):
+def getTopicList(text, sep = ", "):
 
     topics = te.extract(text)
     n_topics = random.randint(7, 15)
