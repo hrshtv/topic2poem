@@ -1,9 +1,5 @@
 import pandas as pd
 
-data_path = "dataset_200.csv"
-# data_path = "poem_topics_improved_bigrams_150.csv" # 413 poems
-
-# source: https://www.deseret.com/2015/3/20/20479016/poets-famous-quotes-birthplace-writers-edgar-allen-poe-maya-angelou-emily-dickinson
 names = [
 
     "Edgar Allan Poe",
@@ -43,27 +39,30 @@ names = [
 
 ]
 
-names = list(set(names)) # just a sanity check
-
-print(len(names))
-
-df = pd.read_csv(data_path)
 
 def countPoems(df, author):
-    mask = df["Author"] == author
+    mask = (df["Author"] == author)
     return len(df[mask]) 
 
-total = 0
-for name in names:
-    n = countPoems(df, name)
-    print(f"Name: {name} | Poems: {n}")
-    total += n
 
-print(total)
+if __name__ == '__main__':
 
-# Select only these poems
-df = df[df["Author"].isin(names)]
-print(df)
+    data_path = "dataset_200.csv"
 
-df.reset_index(drop = True, inplace = True)
-df.to_csv("dataset_200_top_authors.csv", index = False)
+    print("Number of authors chosen: {}".format(len(names)))
+
+    df = pd.read_csv(data_path)
+
+    total = 0
+    for name in names:
+        n = countPoems(df, name)
+        print(f"Name: {name} | Poems: {n}")
+        total += n
+
+    print(f"Number of poems by the chosen authors: {total}")
+
+    # Select only these poems
+    df = df[df["Author"].isin(names)]
+
+    df.reset_index(drop = True, inplace = True)
+    df.to_csv("dataset_200_top_authors.csv", index = False)

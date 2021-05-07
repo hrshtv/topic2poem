@@ -1,21 +1,19 @@
 from nltk import pos_tag
-from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-
-from string import punctuation
 
 class TopicExtractor:
 
 
     def __init__(self, path, punctuation):
 
+        # Load the stopwords from a file
         with open(path, "r", encoding = "utf-8") as f:
             sw = f.readlines()
         sw = [w.strip() for w in sw[1:]] # Skip the first line
         sw += punctuation
-
         self.sw = sw
 
+        # Initialize constants
         self.allowed_tags = ["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "RB", "RBR", "RBS", "VBG"]
         self.nouns = ["NN", "NNS", "NNP", "NNPS"]
         self.before_noun = ["JJ", "JJR", "JJS", "NN"]
@@ -26,7 +24,6 @@ class TopicExtractor:
     def extract(self, text):
 
         tokens = word_tokenize(text)
-
         tagged = pos_tag(tokens)
 
         unigrams = []
@@ -36,7 +33,7 @@ class TopicExtractor:
         for i in range(len(tagged)):
 
             topic = tagged[i][0]
-            tag = tagged[i][1]
+            tag   = tagged[i][1]
 
             if (topic.lower() not in self.sw) and (tag in self.allowed_tags):
 
@@ -44,7 +41,7 @@ class TopicExtractor:
                 if len(topic) > 3:
                     unigrams.append(topic)
 
-                # Bigrams (are more specific)
+                # Bigrams
                 if i > 1 and tag in self.nouns:
 
                     previous_tag = tagged[i-1][1]
@@ -56,10 +53,6 @@ class TopicExtractor:
                         unigrams_to_remove.append(topic)
                         unigrams_to_remove.append(previous_topic)
 
-
-        # tagged = [t for t in tagged if t[0].lower() not in sw and t[1] in allowed_tags]
-        # topics = list(set([t[0] for t in tagged if len(t[0]) > 3]))
-
         topics = list(set(bigrams)) + list(set(unigrams) - set(unigrams_to_remove))
 
         self.topics = topics
@@ -68,7 +61,7 @@ class TopicExtractor:
 
 
 if __name__ == '__main__':
-    
+
     text = """
     Whose woods these are I think I know.   
     His house is in the village though;   
@@ -91,8 +84,8 @@ if __name__ == '__main__':
     And miles to go before I sleep.
     """
 
-    punctuation = [p for p in punctuation]
-    punctuation += ["—", "*", "’"]
+    from string import punctuation
+    
     te = TopicExtractor("stopwords.txt", punctuation)
     topics = te.extract(text)
     print(topics)

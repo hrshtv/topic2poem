@@ -1,4 +1,4 @@
-# Available at ftp://ftp.cs.cornell.edu/pub/smart/english.stop
+# Source: http://www.ai.mit.edu/projects/jmlr/papers/volume5/lewis04a/a11-smart-stop-list/english.stop
 a
 a's
 able
