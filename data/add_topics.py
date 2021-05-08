@@ -1,4 +1,11 @@
+"""
+    Description: Adds the topics column
+    Example usage: python3 add_topics.py -i dataset_250_top_authors.csv -o topics_250_top_authors.csv -s stopwords.txt
+    Author: Harshit Varma
+"""
+
 import random
+import argparse
 from string import punctuation
 
 import pandas as pd
@@ -6,13 +13,7 @@ from tqdm import tqdm
 
 from extract_topics import TopicExtractor
 
-def clean(text):
-    text = text.replace("’", "'")
-    text = text.replace("–", "-")
-    text = text.replace("—", "-")
-    text = text.replace("“", '"')
-    text = text.replace("”", '"')
-    return text
+random.seed(42)
 
 def getTopicList(text, sep = ", "):
 
@@ -27,18 +28,23 @@ def getTopicList(text, sep = ", "):
     return topics
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
-    df = pd.read_csv("dataset_200_top_authors.csv")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input", required = True)
+    parser.add_argument("-o", "--output", required = True)
+    parser.add_argument("-s", "--stopwords", required = True)
+    args = parser.parse_args()
 
-    te = TopicExtractor("stopwords.txt", punctuation)
+    PATH_IN  = args.input
+    PATH_OUT = args.output
+    PATH_SW  = args.stopwords
+ 
+    df = pd.read_csv(PATH_IN)
+
+    te = TopicExtractor(PATH_SW, punctuation)
 
     tqdm.pandas()
-
-    print("Cleaning:")
-    df["Content"] = df["Content"].progress_apply(clean)
-
-    print("Extracting topics:")
     df["Topics"] = df["Content"].progress_apply(getTopicList)
 
-    df.to_csv("poem_topics_200_top_authors.csv", index = False)
+    df.to_csv(PATH_OUT, index = False)
