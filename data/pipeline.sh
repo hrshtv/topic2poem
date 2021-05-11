@@ -9,7 +9,7 @@ if [ $? -ne 0 ]; then
     exit $?
 fi
 
-python3 filter_length.py -i dataset.csv -o dataset_250.csv -m 20 -M 250
+python3 filter_length.py -i dataset.csv -o dataset_250.csv -m 50 -M 250
 echo "Filtered by length"
 echo ""
 

@@ -42,7 +42,6 @@ names = [
     "George Eliot",
     "Rabindranath Tagore",
     "Christina Rossetti",
-    "Robert Burns",
     "Ben Jonson",
     "Mary Mapes Dodge",
     "Joseph Brodsky",

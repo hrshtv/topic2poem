@@ -13,12 +13,12 @@ from tqdm import tqdm
 
 from extract_topics import TopicExtractor
 
-random.seed(42)
+random.seed(0)
 
-def getTopicList(text, sep = ", "):
+def getTopicList(text, sep = ", ", n_min = 7, n_max = 15):
 
-    topics = te.extract(text)
-    n_topics = random.randint(7, 15)
+    topics = te.extract(text, seed = 0)
+    n_topics = random.randint(n_min, n_max)
 
     if len(topics) > n_topics:
         topics = topics[:n_topics] # prefer bigrams over unigrams

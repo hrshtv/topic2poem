@@ -4,9 +4,25 @@
     Author: Harshit Varma
 """
 
+import string
 import argparse
 import pandas as pd
 from tqdm import tqdm
+
+# Reference: https://learn.lexiconic.net/shakewords.htm
+archaic_dict = {
+
+    "'d" : "ed",
+    "e'er" : "ever", 
+    "'ere" : "before",
+    "o'er" : "over",
+    "'tis" : "it is",
+    "'twas" : "it was",
+
+    " oft " : " often ",
+    " hie " : " hurry "
+
+}
 
 def clean(text):
 
@@ -24,11 +40,11 @@ def clean(text):
     text = text.replace("–", "-")
     text = text.replace("—", "-")
 
-    text = text.strip()
-    text = text.strip('"')
-    text = text.strip("'")
-    text = text.strip('(')
-    text = text.strip(')')
+    text = text.strip(string.punctuation)
+
+    for w1, w2 in archaic_dict.items():
+        text = text.replace(w1, w2)
+        text = text.replace(w1.capitalize(), w2)
 
     return text
 
