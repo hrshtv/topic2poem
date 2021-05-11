@@ -15,7 +15,7 @@ from extract_topics import TopicExtractor
 
 random.seed(0)
 
-def getTopicList(text, sep = ", ", n_min = 7, n_max = 15):
+def getTopicList(text, sep = ", ", n_min = 10, n_max = 15):
 
     topics = te.extract(text, seed = 0)
     n_topics = random.randint(n_min, n_max)

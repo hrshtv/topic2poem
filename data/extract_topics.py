@@ -1,15 +1,13 @@
 """
-    Description: Extracts topics (bigrams and unigrams) from given text using POS-Tagging
+    Description: Extracts topics (bigrams and unigrams) from given text using POS-Tagging and rank them using sentiment intensity
     Author: Harshit Varma
 """
 
 import random
 from nltk import pos_tag
 from nltk.tokenize import word_tokenize
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
-def listDiff(l1, l2):
-    diff = [item for item in l1 if item not in l2]
-    return diff
     
 class TopicExtractor:
 
@@ -19,8 +17,7 @@ class TopicExtractor:
         with open(path, "r", encoding = "utf-8") as f:
             sw = f.readlines()
         sw = [w.strip() for w in sw[1:]] # Skip the first line
-        punctuation = [p for p in punctuation]
-        sw += punctuation
+        sw += [p for p in punctuation]
         self.sw = sw
 
         self.punctuation = punctuation
@@ -32,8 +29,31 @@ class TopicExtractor:
 
         self.topics = None
 
+        self.sia = SentimentIntensityAnalyzer()
 
-    def extract(self, text, seed = None):
+
+    def listDiff(self, l1, l2):
+        diff = [item for item in l1 if item not in l2]
+        return diff
+
+
+    def rank(self, topics):
+        topic_scores = []
+        for t in topics:
+            scores_dict = self.sia.polarity_scores(t) # reference: http://www.nltk.org/howto/sentiment.html
+            del scores_dict["compound"]
+            stype = max(scores_dict, key = scores_dict.get)
+            sval = scores_dict[stype]
+            if stype == "neu":
+                topic_scores.append((0, sval))
+            else:
+                topic_scores.append((1, sval))
+        # Sort by topic scores
+        ranked_topics = [t for _, t in sorted(zip(topic_scores, topics), reverse = True)]
+        return ranked_topics
+
+
+    def extract(self, text, seed = None, random_rank = False):
 
         # To prevent bigrams moving to the next line
         text = text.replace("\n", " | ")
@@ -77,19 +97,25 @@ class TopicExtractor:
                         if previous_topic not in unigrams_to_remove:
                             unigrams_to_remove.append(previous_topic)
 
-        unigrams = listDiff(unigrams, unigrams_to_remove)
+        unigrams = self.listDiff(unigrams, unigrams_to_remove)
 
-        if seed is not None:
-            random.Random(seed).shuffle(bigrams)
-            random.Random(seed).shuffle(unigrams)
+        # Clean topics:
+        bigrams = [b.strip(self.punctuation) for b in bigrams]
+        unigrams = [u.strip(self.punctuation) for u in unigrams]
+
+        # Rank topics:
+
+        if random_rank:
+            if seed is not None:
+                random.Random(seed).shuffle(bigrams)
+                random.Random(seed).shuffle(unigrams)
+            else:
+                random.shuffle(bigrams)
+                random.shuffle(unigrams)
+            topics = bigrams + unigrams
+
         else:
-            random.shuffle(bigrams)
-            random.shuffle(unigrams)
-
-        topics = bigrams + unigrams
-
-        # Clean topics
-        topics = [t.strip(self.punctuation) for t in topics]
+            topics = self.rank(bigrams) + self.rank(unigrams)
         
         self.topics = topics
 
@@ -99,27 +125,40 @@ class TopicExtractor:
 if __name__ == '__main__':
 
     text = """
-    Whose woods these are I think I know.   
-    His house is in the village though;   
-    He will not see me stopping here   
-    To watch his woods fill up with snow.   
+        Risest thou thus, dim dawn, again,
+        And howlest, issuing out of night,
+        With blasts that blow the poplar white,
+        And lash with storm the streaming pane?
 
-    My little horse must think it queer   
-    To stop without a farmhouse near   
-    Between the woods and frozen lake   
-    The darkest evening of the year.   
+        Day, when my crowned estate begun
+        To pine in that reverse of doom,
+        Which sickened every living bloom,
+        And blurred the splendour of the sun;
 
-    He gives his harness bells a shake   
-    To ask if there is some mistake.   
-    The only other sound's the sweep   
-    Of easy wind and downy flake.   
+        Who usherest in the dolorous hour
+        With thy quick tears that make the rose
+        Pull sideways, and the daisy close
+        Her crimson fringes to the shower;
 
-    The woods are lovely, dark- and deep,   
-    But I have promises to keep,   
-    And miles to go before I sleep,   
-    And miles to go before I sleep.
+        Who might'st have heaved a windless flame
+        Up the deep East, or, whispering, played
+        A chequer-work of beam and shade
+        Along the hills, yet looked the same.
 
-    abcd-efgh
+        As wan, as chill, as wild as now;
+        Day, marked as with some hideous crime,
+        When the dark hand struck down thro' time,
+        And cancelled nature's best: but thou,
+
+        Lift as thou may'st thy burthened brows
+        Thro' clouds that drench the morning star,
+        And whirl the ungarnered sheaf afar,
+        And sow the sky with flying boughs,
+
+        And up thy vault with roaring sound
+        Climb thy thick noon, disastrous day;
+        Touch thy dull goal of joyless gray,
+        And hide thy shame beneath the ground
     """
 
     from string import punctuation
