@@ -19,6 +19,7 @@ class TopicExtractor:
         with open(path, "r", encoding = "utf-8") as f:
             sw = f.readlines()
         sw = [w.strip() for w in sw[1:]] # Skip the first line
+        punctuation = [p for p in punctuation]
         sw += punctuation
         self.sw = sw
 
