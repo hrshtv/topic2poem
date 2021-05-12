@@ -2,7 +2,7 @@
 End-to-End Poetry Generation from a list of topics using [T5: Text-To-Text Transfer Transformer](https://arxiv.org/abs/1910.10683)
 
 ## Usage
-All code is present in `main.ipynb` (opening this in [Google Colab](https://colab.research.google.com/) is preferable)
+All code is present in `code/main.ipynb` (opening this in [Google Colab](https://colab.research.google.com/) is preferable)
 
 ## Data
 
@@ -18,18 +18,18 @@ All code is present in `main.ipynb` (opening this in [Google Colab](https://cola
 - After this, `data/add_topics.py` is executed which generates the list of topics for each poem using `data/extract_topics.py`
 The number of topics extracted for a given poem is sampled uniformly from `[10, 15]`
 
-## Topic Extraction and Ranking
+### Topic Extraction and Ranking
 A 'topic' here refers to a unigram or a bigram which is present in the text  
 The code for extracting and ranking is present in `data/extract_topics.py`
 
-### Extraction
+#### Extraction
 - The given text is first labelled using [POS tagging](https://en.wikipedia.org/wiki/Part-of-speech_tagging), using [NLTK](https://www.nltk.org/api/nltk.tag.html#nltk.tag.perceptron.PerceptronTagger)
 - Then, unigrams that are in `["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "RB", "RBR", "RBS", "VBG"]` are classfied as topics
 - For each noun (`["NN", "NNS", "NNP", "NNPS"]`) in the topics, if the previous token lies in `["JJ", "JJR", "JJS", "NN"]`, 
 then the bigram formed after combining the two unigrams (i.e the previous token and the noun) is added to the topics, 
 and the individual unigrams are removed from the topics (if they were added before)
 
-### Ranking
+#### Ranking
 - Using [VADER](https://www.nltk.org/_modules/nltk/sentiment/vader.html), each topic's sentiment (`pos, neg, neu`) scores are obtained. 
 - Positive and negative topics have equal preference and are preferred over neutral topics 
 - Topics are then sorted in decreasing order of their sentiment scores to obtain the final order
