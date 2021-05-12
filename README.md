@@ -30,9 +30,11 @@ then the bigram formed after combining the two unigrams (i.e the previous token 
 and the individual unigrams are removed from the topics (if they were added before)
 
 #### Ranking
-- Using [VADER](https://www.nltk.org/_modules/nltk/sentiment/vader.html), each topic's sentiment (`pos, neg, neu`) scores are obtained. 
-- Positive and negative topics have equal preference and are preferred over neutral topics 
-- Topics are then sorted in decreasing order of their sentiment scores to obtain the final order
+- Using [VADER](https://www.nltk.org/_modules/nltk/sentiment/vader.html), each topic's sentiment scores (`pos, neg, neu`) are obtained
+- Each topic is assigned a tuple of the form `(pref, val)`
+  - `val` is the maximum of the three sentiments 
+  - `pref` is `0` if `val` corresponds to `neu` else it's `1`, this leads to positive and negative topics having equal preference and being preferred over neutral topics 
+- Topics are then sorted in decreasing order of these tuples to get the final order
 
 ### Stopwords
 `data/stopwords/stopwords.txt` is a combination of three different kinds of stopwords:
