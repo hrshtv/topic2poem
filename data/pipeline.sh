@@ -27,7 +27,7 @@ if [ $? -ne 0 ]; then
     exit $?
 fi
 
-python3 add_topics.py -i dataset_250_top_authors.csv -o topics_250_top_authors.csv -s stopwords.txt
+python3 add_topics.py -i dataset_250_top_authors.csv -o topics_250_top_authors.csv -s stopwords/stopwords.txt
 echo "Added topics column"
 echo ""
 

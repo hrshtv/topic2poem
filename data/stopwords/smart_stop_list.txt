@@ -1,30 +1,4 @@
-# Source: http://www.ai.mit.edu/projects/jmlr/papers/volume5/lewis04a/a11-smart-stop-list/english.stop (starting from line 28)
-anon
-aught
-ay
-thy
-thee
-thou
-thine
-ye
-art
-doth
-dost
-hast
-hath
-didst
-wast
-whence
-wherefore
-thro
-tho
-yon
-yonder
-ye
-yea
-may'st
-follow
-close
+# Source: http://www.ai.mit.edu/projects/jmlr/papers/volume5/lewis04a/a11-smart-stop-list/english.stop
 a
 a's
 able

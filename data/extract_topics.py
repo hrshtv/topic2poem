@@ -163,7 +163,7 @@ if __name__ == '__main__':
 
     from string import punctuation
     
-    te = TopicExtractor("stopwords.txt", punctuation)
+    te = TopicExtractor("stopwords/stopwords.txt", punctuation)
     topics = te.extract(text, seed = 0)
     print(topics)
 
