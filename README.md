@@ -34,6 +34,12 @@ and the individual unigrams are removed from the topics (if they were added befo
 - Positive and negative topics have equal preference and are preferred over neutral topics 
 - Topics are then sorted in decreasing order of their sentiment scores to obtain the final order
 
+### Stopwords
+`data/stopwords/stopwords.txt` is a combination of three different kinds of stopwords:
+- [SMART stopwords list](http://www.ai.mit.edu/projects/jmlr/papers/volume5/lewis04a/a11-smart-stop-list/)
+- [English Personal Names](https://www.matthewjockers.net/macroanalysisbook/expanded-stopwords-list/)
+- A [few archaic stopwords](data/stopwords/custom.txt) which were added manually 
+
 ## References
 - [Fine Tuning T5 for Summary Generation](https://github.com/abhimishra91/transformers-tutorials/blob/master/transformers_summarization_wandb.ipynb) 
 - [T5 Finetuning Tips](https://discuss.huggingface.co/t/t5-finetuning-tips/684)
