@@ -33,3 +33,12 @@ and the individual unigrams are removed from the topics (if they were added befo
 - Using [VADER](https://www.nltk.org/_modules/nltk/sentiment/vader.html), each topic's sentiment (`pos, neg, neu`) scores are obtained. 
 - Positive and negative topics have equal preference and are preferred over neutral topics 
 - Topics are then sorted in decreasing order of their sentiment scores to obtain the final order
+
+## References
+- [Fine Tuning T5 for Summary Generation](https://github.com/abhimishra91/transformers-tutorials/blob/master/transformers_summarization_wandb.ipynb) 
+- [T5 Finetuning Tips](https://discuss.huggingface.co/t/t5-finetuning-tips/684)
+- [(Huggingface) T5 Docs](https://huggingface.co/transformers/model_doc/t5.html)
+- [(Huggingface) Training T5](https://huggingface.co/transformers/model_doc/t5.html#training)
+- [Finetuning T5 Tutorial](https://colab.research.google.com/github/patil-suraj/exploring-T5/blob/master/t5_fine_tuning.ipynb)
+- [Few Shot Learning with T5](https://towardsdatascience.com/poor-mans-gpt-3-few-shot-text-generation-with-t5-transformer-51f1b01f843e)
+- [Text Generation with Transformers](https://huggingface.co/blog/how-to-generate) 
