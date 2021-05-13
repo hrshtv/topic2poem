@@ -1,5 +1,5 @@
 """
-    Description: Combines the list of different stopwords
+    Description: Combines the list of different stopwords files
     Author: Harshit Varma
 """
 
@@ -19,8 +19,6 @@ custom = [w.strip() for w in custom[1:]] # Skip the first line
 sw = ssl + names + custom
 
 sw = sorted(list(set(sw)))
-
-print(sw)
 
 print("Total unique stopwords: {}".format(len(sw)))
 

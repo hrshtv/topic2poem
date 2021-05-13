@@ -9,46 +9,49 @@ import argparse
 import pandas as pd
 from tqdm import tqdm
 
-# Reference: https://learn.lexiconic.net/shakewords.htm
-archaic_dict = {
+replace_dict = {
+    
+    # Single inverted commas
+    "‘" : "'",
+    "’" : "'",
 
+    # Double inverted commas
+    "“" : '"',
+    "”" :'"',
+
+    # Hyphens
+    "‐" : "-",
+    "᠆" : "-",
+    "᠆" : "-",
+    "－" : "-",
+    "–" : "-",
+    "—" : "-",
+
+    # Words containing "'"
+    ## Lowercase
     "'d" : "ed",
     "e'er" : "ever", 
     "'ere" : "before",
     "o'er" : "over",
+    "v'r" : "ver",
     "'tis" : "it is",
     "'twas" : "it was",
-
+    # Capitalized
     "E'er" : "Ever",
     "O'er" : "Over",
     "'Tis" : "It is",
     "'Twas" : "It was",
 
+    # HTML entities
     "&amp;" : "and",
 
 }
 
 def clean(text):
-
-    # Single inverted commas
-    text = text.replace("‘", "'")
-    text = text.replace("’", "'")
-    # Double inverted commas
-    text = text.replace("“", '"')
-    text = text.replace("”", '"')
-    # Hyphens
-    text = text.replace("‐", "-")
-    text = text.replace("᠆", "-")
-    text = text.replace("᠆", "-")
-    text = text.replace("－", "-")
-    text = text.replace("–", "-")
-    text = text.replace("—", "-")
-
+    """ Cleans the text using the specified replace dict """
     text = text.strip(string.punctuation)
-
-    for w1, w2 in archaic_dict.items():
+    for w1, w2 in replace_dict.items():
         text = text.replace(w1, w2)
-
     return text
 
 

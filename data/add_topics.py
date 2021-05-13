@@ -1,6 +1,6 @@
 """
-    Description: Adds the topics column
-    Example usage: python3 add_topics.py -i dataset_250_top_authors.csv -o topics_250_top_authors.csv -s stopwords.txt
+    Description: Adds the topics column suing extract_topics.py
+    Example usage: python3 add_topics.py -i dataset.csv -o dataset_with_topics.csv -s stopwords/stopwords.txt
     Author: Harshit Varma
 """
 
@@ -15,7 +15,7 @@ from extract_topics import TopicExtractor
 
 random.seed(0)
 
-def getTopicList(text, sep = ", ", n_min = 10, n_max = 15):
+def getTopicList(text, sep = ", ", n_min = 7, n_max = 15):
 
     topics = te.extract(text, seed = 0)
     n_topics = random.randint(n_min, n_max)

@@ -1,6 +1,6 @@
 """
     Description: Filters out all poems not in the length range specified
-    Example usage: python3 filter_length.py -i dataset.csv -o dataset_250.csv -m 20 -M 250
+    Example usage: python3 filter_length.py -i dataset.csv -o filtered_length.csv -m 20 -M 250
     Author: Harshit Varma
 """
 
@@ -11,6 +11,7 @@ from string import punctuation
 from nltk.tokenize import word_tokenize
 
 def countTokens(text):
+    """ Counts the number of tokens in the text """
     tokens = word_tokenize(text)
     tokens = [t for t in tokens if t not in punctuation]
     return len(tokens)

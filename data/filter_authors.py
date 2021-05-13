@@ -1,6 +1,6 @@
 """
-    Description: Filters out all authors not in the list
-    Example usage: python3 filter_authors.py -i dataset_250.csv -o dataset_250_top_authors.csv
+    Description: Filters out all authors not in the specified list
+    Example usage: python3 filter_authors.py -i dataset.csv -o filtered_authors.csv
     Author: Harshit Varma
 """
 
@@ -36,7 +36,6 @@ names = [
     "Ezra Pound",
     "John Milton",
     "Sappho",
-
     "Isaac Watts",
     "Carole Boston Weatherford",
     "George Eliot",
@@ -48,10 +47,13 @@ names = [
     "Richard Wilbur",
     "Robert Graves",
     "Algernon Charles Swinburne",
+
 ]
+names = list(set(names))
 
 
 def countPoems(df, author):
+    """ Returns number of poems written by the given author """
     mask = (df["Author"] == author)
     return len(df[mask]) 
 
