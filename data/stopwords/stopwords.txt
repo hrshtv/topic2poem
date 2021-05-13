@@ -513,6 +513,7 @@ becomes
 becoming
 bee
 been
+beest
 before
 beforehand
 begin
@@ -746,6 +747,7 @@ candra
 candy
 candyce
 cannot
+canst
 cant
 caprice
 caption
@@ -1378,6 +1380,7 @@ dianna
 dianne
 dick
 did
+didest
 didn't
 didnt
 didst
@@ -2115,6 +2118,7 @@ h
 ha
 had
 hadn't
+hadst
 hae
 hai
 hailey
@@ -2134,6 +2138,7 @@ hannelore
 hans
 happens
 hardly
+hark
 harlan
 harland
 harley
@@ -3960,6 +3965,7 @@ moses
 moshe
 most
 mostly
+mought
 mozell
 mozella
 mozelle
@@ -4809,6 +4815,7 @@ shalanda
 shall
 shalon
 shalonda
+shalt
 shameka
 shamika
 shan
@@ -4966,6 +4973,7 @@ shonta
 shoshana
 should
 shouldn't
+shouldst
 shu
 shyla
 sibyl
@@ -5683,6 +5691,7 @@ were
 weren't
 werent
 werner
+wert
 wes
 wesley
 weston
@@ -5756,6 +5765,7 @@ willy
 wilma
 wilmer
 wilson
+wilt
 wilton
 windy
 winford
@@ -5777,9 +5787,11 @@ wonder
 wont
 woodrow
 words
+wot
 would
 wouldn't
 wouldnt
+wouldst
 wyatt
 wynell
 wynona

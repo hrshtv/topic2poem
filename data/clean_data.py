@@ -19,8 +19,12 @@ archaic_dict = {
     "'tis" : "it is",
     "'twas" : "it was",
 
-    " oft " : " often ",
-    " hie " : " hurry "
+    "E'er" : "Ever",
+    "O'er" : "Over",
+    "'Tis" : "It is",
+    "'Twas" : "It was",
+
+    "&amp;" : "and",
 
 }
 
@@ -44,7 +48,6 @@ def clean(text):
 
     for w1, w2 in archaic_dict.items():
         text = text.replace(w1, w2)
-        text = text.replace(w1.capitalize(), w2)
 
     return text
 

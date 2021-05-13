@@ -1,4 +1,4 @@
-# Custom list of stopwords added manually
+# Custom list of stopwords added manually (Reference: https://www.shakespeareswords.com/Public/LanguageCompanion/ThemesAndTopics.aspx?TopicId=40)
 anon
 aught
 ay
@@ -13,6 +13,7 @@ dost
 hast
 hath
 didst
+didest
 wast
 whence
 wherefore
@@ -25,3 +26,14 @@ yea
 may'st
 follow
 close
+hark
+beest
+wert
+hadst
+canst
+shouldst
+shalt
+wilt
+wouldst
+wot
+mought
