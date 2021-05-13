@@ -42,6 +42,67 @@ and the individual unigrams are removed from the topics (if they were added befo
 - [English Personal Names](https://www.matthewjockers.net/macroanalysisbook/expanded-stopwords-list/)
 - A [few archaic stopwords](data/stopwords/custom.txt) which were added manually 
 
+## Examples
+```
+Input: bright key, white hair, green plain, weep, laughing, harm, happy, free, wind, wash, tongue, thousands
+Output:
+Come and see,
+And let me not hurt
+None of mine do harm;
+I know that I am free.
+And let me not,- I tell our children
+Yet a thousand times
+Dad I tell you, let me lie
+Where ye are free,
+As long as they should go
+Sitting there in the road,
+And I am learning to look
+From my white hair:
+And then I will be left by
+Then weep that the wind's wake
+Of my happiness is free;
+And smile that it is
+Long before yonder rose,
+But never sleep, and never sleep
+```
+
+```
+Input: frosty white, candy cane, jolly carols, celebration, gingerbread, mistletoe, snowflakes
+Output:
+Christmas blues clad in frosty white,
+Sleigh bells falling from the mountaintop;
+Christmas wreathed with gold and silver.
+At midnight their winter carols are given out;
+Chronicles of delight fall on christmas Eve!
+Do you see me? Leave my little gingerbread house.
+Do you hear those cheery roses?
+Do not tell us what we might say:
+Be that just as they sound like snowflakes
+Nor make funful mistletoe
+```
+
+```
+Input: dark woods, weeping river, full moon, freezing air, vengeance, sad
+Output:
+What do You Bless Me for
+Ringing down in dark woods through freezing air,
+Slowing sigh of your voice and sorrow;
+Sweetness must perish thee in the dark woods.
+Another half moon on the moon,
+The sound of my blood rising out of the pale,
+And the pain of revenge falling upon me?
+Rich thanks you only for your song,
+Then sing with me in this deep-engulf-time.
+I have died of thy name
+Till his blood no more.
+He is too sad to suffer
+The heart can not run across the seaside,
+I am all but death in the weeping river.
+I miss feeling the full moon,
+The light fills my day,
+The dark woods overshadowed by the still loss of vengeance
+```
+
 ## References
 - [Fine Tuning T5 for Summary Generation](https://github.com/abhimishra91/transformers-tutorials/blob/master/transformers_summarization_wandb.ipynb) 
 - [T5 Finetuning Tips](https://discuss.huggingface.co/t/t5-finetuning-tips/684)
