@@ -81,6 +81,28 @@ Be that just as they sound like snowflakes
 Nor make funful mistletoe
 ```
 
+```
+Input: dark woods, weeping river, full moon, freezing air, vengeance, sad
+Output:
+What do You Bless Me for
+Ringing down in dark woods through freezing air,
+Slowing sigh of your voice and sorrow;
+Sweetness must perish thee in the dark woods.
+Another half moon on the moon,
+The sound of my blood rising out of the pale,
+And the pain of revenge falling upon me?
+Rich thanks you only for your song,
+Then sing with me in this deep-engulf-time.
+I have died of thy name
+Till his blood no more.
+He is too sad to suffer
+The heart can not run across the seaside,
+I am all but death in the weeping river.
+I miss feeling the full moon,
+The light fills my day,
+The dark woods overshadowed by the still loss of vengeance
+```
+
 ## References
 - [Fine Tuning T5 for Summary Generation](https://github.com/abhimishra91/transformers-tutorials/blob/master/transformers_summarization_wandb.ipynb) 
 - [T5 Finetuning Tips](https://discuss.huggingface.co/t/t5-finetuning-tips/684)
