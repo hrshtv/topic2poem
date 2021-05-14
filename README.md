@@ -1,4 +1,4 @@
-# text2poem
+# topic2poem
 End-to-End Poetry Generation from a list of topics using [T5: Text-To-Text Transfer Transformer](https://arxiv.org/abs/1910.10683)
 
 ## Usage
