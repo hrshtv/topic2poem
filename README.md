@@ -33,7 +33,9 @@ The code for extracting and ranking is present in `data/extract_topics.py`
 - Then, unigrams that are in `["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "RB", "RBR", "RBS", "VBG"]` are classfied as topics
 - For each noun (`["NN", "NNS", "NNP", "NNPS"]`) in the topics, if the previous token lies in `["JJ", "JJR", "JJS", "NN"]`, 
 then the bigram formed after combining the two unigrams (i.e the previous token and the noun) is added to the topics, 
-and the individual unigrams are removed from the topics (if they were seperately added before)
+and the individual unigrams are removed from the topics (if they were seperately added before)  
+
+[(List of NLTK POS tags)](https://stackoverflow.com/a/38264311)
 
 #### Ranking
 - Using [VADER](https://www.nltk.org/_modules/nltk/sentiment/vader.html), each topic's sentiment scores `(pos, neg, neu)` are obtained
