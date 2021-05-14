@@ -1,6 +1,11 @@
 # topic2poem
 End-to-End Poetry Generation from a list of topics using [T5: Text-To-Text Transfer Transformer](https://arxiv.org/abs/1910.10683)
 
+
+<p align="middle">
+  <img src="img/readme1.jpg" width="90%"></img>
+</p>
+
 ## Usage
 All code is present in `code/main.ipynb` (opening this in [Google Colab](https://colab.research.google.com/) is preferable)
 
@@ -43,68 +48,112 @@ and the individual unigrams are removed from the topics (if they were added befo
 - A [few archaic stopwords](data/stopwords/custom.txt) which were added manually 
 
 ## Examples
+
 ```
-Input: bright key, white hair, green plain, weep, laughing, harm, happy, free, wind, wash, tongue, thousands
+Input: heroic wealth, cheerful godliness, selfish men, lowliest duties, naked heavens, stagnant waters, english dower
+
 Output:
-Come and see,
-And let me not hurt
-None of mine do harm;
-I know that I am free.
-And let me not,- I tell our children
-Yet a thousand times
-Dad I tell you, let me lie
-Where ye are free,
-As long as they should go
-Sitting there in the road,
-And I am learning to look
-From my white hair:
-And then I will be left by
-Then weep that the wind's wake
-Of my happiness is free;
-And smile that it is
-Long before yonder rose,
-But never sleep, and never sleep
+The God of love, who made thee
+Of himself a little selfish men, created
+In that first meeting of heaven and earth;
+And now these fallen trees in England dower.
+These trees which lack vitality have not grown long,
+And stagnant waters bring us pain:
+This land of immortality does suffer but decay;
+The manhood gives rise to bear,
+The angels complain,
+"But still we must strive for higher things."
+Everyone will agree,
+One answer shall speak English dower;
+What will the youth take or should be?
+Or is it that all human need be;
+Who are they therefore to bear
+For such heroic wealth so scarcely,
+Nor ever with patience keep pace with stagnant water;
+They shall make naked heavens again,
+Red Roofs and roofs from ceilings!
+If they were not themselves, then they would die
 ```
 
 ```
-Input: frosty white, candy cane, jolly carols, celebration, gingerbread, mistletoe, snowflakes
+Input: watered shoot, thickset fruit, singing bird, silver grapes, silver fleurs-de-lys, purple dyes, halcyon sea, 
+vair, silk, rainbow, pomegranates, peacocks, paddles, nest, life
+
 Output:
-Christmas blues clad in frosty white,
-Sleigh bells falling from the mountaintop;
-Christmas wreathed with gold and silver.
-At midnight their winter carols are given out;
-Chronicles of delight fall on christmas Eve!
-Do you see me? Leave my little gingerbread house.
-Do you hear those cheery roses?
-Do not tell us what we might say:
-Be that just as they sound like snowflakes
-Nor make funful mistletoe
+O sweet and low of the halcyon sea,
+Golden grapes with purple dyes on each leaf;
+And sweeter than all the other flowers!
+Drip out the nest, open the doors,
+Or split the shells in half-a-half.
+The silver blossoms-de-lys
+Each one for the little flower;
+An angel's pear and blue blood:
+A singing bird, an angel'll feed.
+Chocolate spring and fall
+On the golden apples on the leaves;
+Silver blossoms are yellow in the autumn breezes;
+The purple dyed orange seeds
 ```
 
 ```
-Input: dark woods, weeping river, full moon, freezing air, vengeance, sad
+Input: grief lay, wild sparkles, sepulchral urn, heavy heart, hair beneath, ashen greyness, solemnly, scorn
+
 Output:
-What do You Bless Me for
-Ringing down in dark woods through freezing air,
-Slowing sigh of your voice and sorrow;
-Sweetness must perish thee in the dark woods.
-Another half moon on the moon,
-The sound of my blood rising out of the pale,
-And the pain of revenge falling upon me?
-Rich thanks you only for your song,
-Then sing with me in this deep-engulf-time.
-I have died of thy name
-Till his blood no more.
-He is too sad to suffer
-The heart can not run across the seaside,
-I am all but death in the weeping river.
-I miss feeling the full moon,
-The light fills my day,
-The dark woods overshadowed by the still loss of vengeance
+The hunter came down in yonder wood,
+And the heavy heart was found beneath it;
+But love and life and caroling were everywhere;
+And love and hate and sin were everywhere.
+Let there be beauty and commerce,
+Lest it invade our earth?
+Sepulchral urn is found near;
+Lightly glides to the light;
+Not solaceless ashen greyness, nor wild sparkles:
+There shall the needful decay come before!
+Lo, all must grieve lay beneath it.
+Look! Wherefore I see no gravemorrow
+The land of despair lay undefiled,
+Fetter-fires that are not solemnly.
+Men under such circumstances doth leave
+Their own grief lay
+```
+
+```
+Input: kindly, death, visible, tippet, swelling, shorter, setting, school, scarcely, roof, ring
+
+Output:
+The sun was blue, and the moon was white;
+The stars were green, but not brown,
+Not visible from the tippet,
+Nor measles were curled up in blood,
+But all seemed to be spitting away
+And so much of an interest in school.
+'Maybe it some day there
+Someday I'll go back with that which I loved
+(If Death had shown any interest)
+Always shorter than his peers!
+Yesternight this roof was seen,
+perhaps because I couldn't see it shined out-
+Or is shorter than the leaves too long ago:
+By the bell was set low,
+And therefore my love would look on me more,
+Their name might have been cut short
+```
+
+```
+Input: violent ways, tightened bow, peaceful, natural, misery, kind, fire, beauty
+
+Output:
+There is a peace in the night,
+And of course, there is peace in nature.
+When we are kind and fair,
+We must be careful not with fire:
+If in our country there is none misery
+Therefore we can find peace in Nature's bush;
+If by some peaceful means we shall be freed from violence
 ```
 
 ## References
-- [Fine Tuning T5 for Summary Generation](https://github.com/abhimishra91/transformers-tutorials/blob/master/transformers_summarization_wandb.ipynb) 
+- [Finetuning T5 for Summary Generation](https://github.com/abhimishra91/transformers-tutorials/blob/master/transformers_summarization_wandb.ipynb) 
 - [T5 Finetuning Tips](https://discuss.huggingface.co/t/t5-finetuning-tips/684)
 - [(Huggingface) T5 Docs](https://huggingface.co/transformers/model_doc/t5.html)
 - [(Huggingface) Training T5](https://huggingface.co/transformers/model_doc/t5.html#training)
