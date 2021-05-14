@@ -12,16 +12,17 @@ All code is present in `code/main.ipynb` (opening this in [Google Colab](https:/
 ## Data
 
 ### Creating the Dataset
-- Download the [Poetry Foundation](https://www.poetryfoundation.org/) dataset from [Kaggle](https://www.kaggle.com/johnhallman/complete-poetryfoundationorg-dataset)
-- Clone this repository and place the downloaded `csv` file in `data/`
-- `cd` to `data/` and run `bash pipeline.sh`
+- Clone this repository
+- Download the [Poetry Foundation](https://www.poetryfoundation.org/) dataset from [Kaggle](https://www.kaggle.com/johnhallman/complete-poetryfoundationorg-dataset) and place the downloaded `csv` file in `data/`
+- `cd` to `data/` and run `bash pipeline.sh`   
+  This will create [`data/final_dataset.csv`](data/final_dataset.csv)
 
 ### Details
-- First, `data/clean_data.py` is executed, which replaces some non-ascii punctuations by their ascii version and also replaces some common archaic words by their modern english versions
+- First, `data/clean_data.py` is executed, which removes/replaces some problematic characters and tokens
 - After this, `data/filter_length.py` is executed, which keeps only the poems of length (in tokens) between `[50, 250]` and discards the rest
-- Then, `data/filter_authors.py` is executed, which keeps only the poems written by a particular set of authors, specified in the file itself
-- After this, `data/add_topics.py` is executed which generates the list of topics for each poem using `data/extract_topics.py`
-The number of topics extracted for a given poem is sampled uniformly from `[10, 15]`
+- Then, `data/filter_authors.py` is executed, which keeps only the poems written by a particular set of authors (specified in the file itself)
+- After this, `data/add_topics.py` is executed which generates the list of topics for each poem using `data/extract_topics.py`  
+The number of topics extracted for a given poem is sampled uniformly from `[7, 15]`
 
 ### Topic Extraction and Ranking
 A 'topic' here refers to a unigram or a bigram which is present in the text  
@@ -32,14 +33,15 @@ The code for extracting and ranking is present in `data/extract_topics.py`
 - Then, unigrams that are in `["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "RB", "RBR", "RBS", "VBG"]` are classfied as topics
 - For each noun (`["NN", "NNS", "NNP", "NNPS"]`) in the topics, if the previous token lies in `["JJ", "JJR", "JJS", "NN"]`, 
 then the bigram formed after combining the two unigrams (i.e the previous token and the noun) is added to the topics, 
-and the individual unigrams are removed from the topics (if they were added before)
+and the individual unigrams are removed from the topics (if they were seperately added before)
 
 #### Ranking
-- Using [VADER](https://www.nltk.org/_modules/nltk/sentiment/vader.html), each topic's sentiment scores (`pos, neg, neu`) are obtained
-- Each topic is assigned a tuple of the form `(pref, val)`
-  - `val` is the maximum of the three sentiments 
-  - `pref` is `0` if `val` corresponds to `neu` else it's `1`, this leads to positive and negative topics having equal preference and being preferred over neutral topics 
-- Topics are then sorted in decreasing order of these tuples to get the final order
+- Using [VADER](https://www.nltk.org/_modules/nltk/sentiment/vader.html), each topic's sentiment scores `(pos, neg, neu)` are obtained
+- These are used to assign the topics a tuple of numbers, which is used for scoring and ranking them
+  - For each topic, let `m = max(pos, neg, neu)` and let `(s1, s2) = sort([pos, neg])`
+  - If `m` corresponds to `neu`, the topic is assigned a score of `(0, m, s1, s2)`
+  - If `m` corresponds to `pos` or `neg`, then the topic is assigned a score of `(1, m, s2)`
+- Topics are then sorted in decreasing order of the topic scores to get the final order
 
 ### Stopwords
 `data/stopwords/stopwords.txt` is a combination of three different kinds of stopwords:
